@@ -1,0 +1,28 @@
+{
+  "name": "real-time-pizza",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "serve": "node server.js",
+    "developement": "mix",
+    "watch": "npx mix watch"
+  },
+  "author": "shubhamandgovardhan",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "ejs": "^3.1.7",
+    "express": "^4.17.3",
+    "express-ejs-layouts": "^2.5.1"
+  },
+  "devDependencies": {
+    "laravel-mix": "^6.0.43",
+    "nodemon": "^2.0.15",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.50.1",
+    "sass-loader": "^12.1.0"
+  }
+}
