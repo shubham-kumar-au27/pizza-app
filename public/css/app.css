@@ -25,3 +25,10 @@ section.hero {
   border-color: #fff;
   color: #fff;
 }
+
+section.cart {
+  background: white;
+}
+section.cart .amount {
+  color: #FE5F1E;
+}
