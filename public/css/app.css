@@ -32,3 +32,8 @@ section.cart {
 section.cart .amount {
   color: #FE5F1E;
 }
+
+section.login {
+  background: white;
+  min-height: 100vh-;
+}
