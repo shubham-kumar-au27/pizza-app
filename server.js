@@ -3,8 +3,29 @@ const ejs = require('ejs');
 const expressLayout = require('express-ejs-layouts');
 const path = require('path');  //node module
 const app = express();
-
+require('dotenv').config();
+const mongoose = require('mongoose') //db-connect
+const session = require('express-session')
 const PORT = process.env.PORT || 3300
+
+//db-connection
+async function initMongoDB() {
+   await mongoose.connect(process.env.MONGO_URL, (err) =>{
+       if (err) {
+           console.log('error in connecting DB')
+       } else{
+           console.log('successfully-connected-to-db')
+       }
+   })
+}
+initMongoDB()
+//session-config--
+app.use(session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {maxAge:1000*60*60*24} //i.e. 24hrs..
+}));
 
 //assets 
 app.use(express.static('public'))
@@ -18,6 +39,7 @@ app.listen(PORT, () =>{
 });
 //importing routes
 require('./routes/web')(app)
+
 
 
 
