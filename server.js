@@ -7,17 +7,25 @@ const expressLayout=require('express-ejs-layouts')
 
 const PORT=process.env.PORT || 2400
 
+
+
+//Assets
+app.use(express.static('public'))
+
 app.get('/',(req,res)=>{
     res.render('home')
 })
 
-//Assets
-app.use(express.static('public'))
+app.get('/cart',(req,res)=>{
+    res.render('customers/cart')
+})
 
 
 //set template engine
 app.set('views',path.join(__dirname,'/resources/views'))
 app.set('view engine','ejs')
+
+
 
 
 app.listen(PORT,()=>{
