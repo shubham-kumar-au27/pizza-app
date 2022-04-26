@@ -5,8 +5,13 @@ const path = require('path');  //node module
 const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose') //db-connect
-const session = require('express-session')
+const session = require('express-session') //session-based authentication
+const flash = require('express-flash');
+const { collection } = require('./app/models/menu');
+const MongoStore = require('connect-mongo')
 const PORT = process.env.PORT || 3300
+var bodyParser = require('body-parser');
+require('body-parser-zlib')(bodyParser);
 
 //db-connection
 async function initMongoDB() {
@@ -19,13 +24,22 @@ async function initMongoDB() {
    })
 }
 initMongoDB()
+//session-store--
+
+
+
 //session-config--
 app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URL,
+      }),
     saveUninitialized: false,
     cookie: {maxAge:1000*60*60*24} //i.e. 24hrs..
 }));
+app.use(flash()) //middleware
+
 
 //assets 
 app.use(express.static('public'))
